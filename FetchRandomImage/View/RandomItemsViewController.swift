@@ -32,7 +32,12 @@ class RandomItemsViewController: UITableViewController {
         
         cell.textLabel?.text = item.author
         cell.detailTextLabel?.text = "ID: \(item.id)"
-        cell.imageView?.kf.setImage(with: item.download_url, placeholder: UIImage(systemName: "photo"))
+        cell.imageView?.kf.setImage(with: item.download_url, placeholder: UIImage(systemName: "photo")) { _ in
+            cell.imageView?.contentMode = .scaleAspectFill
+            cell.imageView?.clipsToBounds = true
+            cell.imageView?.frame.size = CGSize(width: 60, height: 60)
+            cell.setNeedsLayout()
+        }
         return cell
     }
     
