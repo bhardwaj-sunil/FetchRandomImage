@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class RandomItemsViewController: UITableViewController {
 
@@ -30,8 +31,8 @@ class RandomItemsViewController: UITableViewController {
         let item = viewModel.randomItems[indexPath.row]
         
         cell.textLabel?.text = item.author
-        cell.detailTextLabel?.text = item.id
-        
+        cell.detailTextLabel?.text = "ID: \(item.id)"
+        cell.imageView?.kf.setImage(with: item.download_url, placeholder: UIImage(systemName: "photo"))
         return cell
     }
     
