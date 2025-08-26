@@ -18,7 +18,7 @@ final class FetchRandomImageTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
     
-    //MARK: Integration tests
+    //MARK: Integration tests (No time to implement Mock Tests)
 
     // Check API integration test
     func testNetworkFetchRealAPI() async throws {
@@ -28,6 +28,12 @@ final class FetchRandomImageTests: XCTestCase {
         XCTAssertFalse(items.isEmpty, "API should always return some items")
     }
     
-    
-
+    @MainActor func testViewModelAddRandomItemWithRealAPI() async {
+        let vm = RandomItemsViewModel()
+        
+        let countBeforeAddRandom = vm.randomItems.count
+        await vm.addRandom()
+        
+        XCTAssertTrue(vm.randomItems.count > countBeforeAddRandom)
+    }
 }
